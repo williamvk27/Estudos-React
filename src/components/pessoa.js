@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function Pessoa({ nome, idade, profissao }) {
 
@@ -8,7 +8,7 @@ function Pessoa({ nome, idade, profissao }) {
       <p>Idade: {idade}</p>
       <p>Profissão: {profissao}</p>
     </div>
-  );
+  )
 }
 
-export default Pessoa;
+export default Pessoa

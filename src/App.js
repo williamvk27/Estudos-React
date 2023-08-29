@@ -1,39 +1,55 @@
-import React from 'react';
-import TaskMennager from './components/taskMennager'; // importando TASKMENNEGER para utilização no APP
-import Task from './components/task'; // importando TASK para utilização no APP
-
+import React, { useState } from 'react'
+import TaskManager from './components/taskManager' 
+import Task from './components/task' 
+import Botao from './components/botao'
 
 function AppTask() {
-  
- //Definindo um array de objetos representando tarefas, cada objeto contém nome e descrição
-  const tarefas = [
-    {
-     nome: 'componente com children',
-    descricao: 'criar componente PAI que recebe um Children e imprime suas propriedades'
-    },
-    {
-      nome: 'HOOK USESTATE',
-      descricao: 'Aprender utilizar o hook useState'
-    },
-    {
-     nome: 'Requisição API',
-     descricao: 'Concluir uma requisição a uma API e mostrar os dados na tela'
+  const [tarefas, setTarefas] = useState([])
+  const [nome, setNome] = useState('')
+  const [descricao, setDescricao] = useState('')
+
+  const adicionarTarefa = () => {
+    if (nome && descricao) {
+      const novaTarefa = { nome: nome, descricao: descricao }
+      setTarefas([...tarefas, novaTarefa]) // dica: componetizar este codigo para um componente! para concluir o desafio 
+      setNome('')
+      setDescricao('')
     }
-  ]
- return (
-   <div>
+  };
 
-     <TaskMennager> {/* utilizando o componente TASKMENNAGER */} 
-       {/* /* Usando o método map para percorrer o array de tarefas e renderizar o componente Task para cada tarefa */}
-      {/* por paramentro passamos tarefa que irá receber as propiedades de TAREFAS , segundo parametro passando o INDEX, que irá receber o posiciomento da TAREFA que vem do ARRAY TAREFAS  */}
+  return (
+    <div className='tw-bg-slate-300'>
+      <TaskManager> 
+        {tarefas.map((tarefa, index) => ( 
+          <Task key={index} nome={tarefa.nome} descricao={tarefa.descricao} />
+        ))}
+    <div> 
+      <input className='tw-text-red-900'
+        type="text"
+        placeholder="Nome da Tarefa"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+      />
+      </div>
 
-      {tarefas.map((tarefa, index) => ( // utilizando o metodo ARRAY para pecorrer o OBJETO tarefas, que é um ARRAY de OBJETOS
-      <Task key={index} nome={tarefa.nome} descricao={tarefa.descricao} />
-       // ao imprimir um ARRAY no React temos que setar um KEY para ele utilizamos o metodo key={ recebendo seu index(posicionamento no array )}. utilizando o componente TASK utilizando os parametros nome e pegando o valor de nome pelo metodo de '.' acessando tarefa.(entrei em tarefa) dentro de tarefa.nome, peguei nome na descricao msm paso a paso 
-      ))}
-      </TaskMennager> {/* utilizando o componente TASKMENNAGER  (fechamento do componenete)*/}  
+      <div className='tw-border-yellow-300 tw-mt-2'>
+      <input
+        type="text"
+        placeholder="Descrição da Tarefa"
+        value={descricao}
+        onChange={(e) => setDescricao(e.target.value)}
+        />
+      </div>
+      
+      <div className='tw-mt-2'>
+        <span className='tw-border-2 tw-bg-gray-500'>
+          <Botao onClick={adicionarTarefa} name={'Add tarefa'} />
+        </span>
+      </div>
+
+     </TaskManager>   
   </div>
-); 
+ )
 }
 
 export default AppTask

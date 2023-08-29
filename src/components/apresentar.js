@@ -1,8 +1,6 @@
-import React from 'react';
-
+import React from 'react'
 
 function Apresentar( props,{ children }) {
-  console.log(props)
   
   return (
     <section>
@@ -12,11 +10,11 @@ function Apresentar( props,{ children }) {
       })}
       
       <p>
-        
         Estou empolgado em compartilhar um pouco mais sobre mim. Minha jornada
         profissional tem sido incrivelmente gratificante, e estou ansioso para
         trocar experiências e conhecimentos com outras pessoas.
       </p>
+
       <p>
         Além da minha profissão, tenho interesse em Jogos e Animes, e estou
         sempre em busca de aprender coisas novas. Adoro desafios e estou aberto
@@ -25,7 +23,6 @@ function Apresentar( props,{ children }) {
       </p>
       
     </section>
-  );
-}
+)}
 
-export default Apresentar;
+export default Apresentar

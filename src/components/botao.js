@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react'
 
-const Botao = () =>{
-    return
-}
+const Botao = ({onClick, name}) => <button onClick={onClick} >{name}</button>
+
 
 export default Botao
