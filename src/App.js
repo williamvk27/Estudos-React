@@ -1,23 +1,20 @@
 import React, { useState } from 'react'
 import TaskManager from './components/TaskManager'
-import TaskForm from './components/TaskForm'
-import Task from './components/Task'
 import TaskPage from './components/TaskPage'
+import TaskContent from './components/TasksContext'
 
 function App() {
-  const [task, setTask] = useState([])
+  const [tasks, setTasks] = useState([])
+
   const addTask = (newTask) => {
-    setTask([...task, newTask])
+    setTasks([...tasks, newTask])
   }
 
   return (
     <div>
       <TaskPage>
-        <TaskManager>
-          <TaskForm addTask={addTask} />
-          {task.map((task, index) => (
-            <Task key={index} name={task.name} description={task.description} />
-          ))}
+        <TaskManager tasks={tasks} addTask={addTask}>
+          <TaskContent />
         </TaskManager>
       </TaskPage>
     </div>

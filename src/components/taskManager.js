@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { createContext } from 'react'
+import TaskForm from './TaskForm'
+import TaskContent from './TasksContext'
 
-const TaskManager = ({ children }) => {
-  return <div>{children}</div>
+export const TaskManagerContext = createContext()
+
+const TaskManager = ({ tasks, addTask }) => {
+  return (
+    <TaskManagerContext.Provider value={{ tasks }}>
+      <TaskForm addTask={addTask} />
+      <TaskContent />
+    </TaskManagerContext.Provider>
+  )
 }
 
 export default TaskManager
