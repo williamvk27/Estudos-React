@@ -1,15 +1,16 @@
-import React, { createContext } from 'react'
+import React, { useContext } from 'react'
+import Tasks from './Tasks'
 import TaskForm from './TaskForm'
-import TaskContent from './TasksContext'
+import { ContextTask } from './TaskContext'
 
-export const TaskManagerContext = createContext()
+const TaskManager = () => {
+  const { tasks, addTask } = useContext(ContextTask)
 
-const TaskManager = ({ tasks, addTask }) => {
   return (
-    <TaskManagerContext.Provider value={{ tasks }}>
+    <section>
       <TaskForm addTask={addTask} />
-      <TaskContent />
-    </TaskManagerContext.Provider>
+      <Tasks tasks={tasks} />
+    </section>
   )
 }
 

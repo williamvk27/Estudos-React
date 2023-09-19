@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 const TaskForm = ({ addTask }) => {
+  const inputRef = useRef()
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
+
   const handleAddTask = () => {
     if (name && description) {
-      const newTask = { name: name, description: description }
+      const newTask = { name, description }
       addTask(newTask)
       setName('')
       setDescription('')
+      inputRef.current.focus()
     }
   }
 
@@ -16,6 +19,7 @@ const TaskForm = ({ addTask }) => {
     <div>
       <div className="tw-mt-2">
         <input
+          ref={inputRef}
           type="text"
           placeholder="Nome da Tarefa"
           value={name}

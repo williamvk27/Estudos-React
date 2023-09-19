@@ -1,24 +1,17 @@
-import React, { useState } from 'react'
-import TaskManager from './components/TaskManager'
+import React from 'react'
 import TaskPage from './components/TaskPage'
-import TaskContent from './components/TasksContext'
+import { TaskProvider } from './components/TaskContext'
+import TaskSearch from './components/TaskSearch'
+import TaskManager from './components/TaskManager'
 
 function App() {
-  const [tasks, setTasks] = useState([])
-
-  const addTask = (newTask) => {
-    setTasks([...tasks, newTask])
-  }
-
   return (
-    <div>
-      <TaskPage>
-        <TaskManager tasks={tasks} addTask={addTask}>
-          <TaskContent />
-        </TaskManager>
-      </TaskPage>
-    </div>
+    <TaskPage>
+      <TaskProvider>
+        <TaskManager />
+        <TaskSearch />
+      </TaskProvider>
+    </TaskPage>
   )
 }
-
 export default App
